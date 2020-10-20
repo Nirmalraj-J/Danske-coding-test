@@ -1,0 +1,52 @@
+<div class="wrapper">
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a routerLink="/home" routerLinkActive="active-route">{{'Home'}}</a></li>
+                    <li><a routerLink="/frontend" routerLinkActive="active-route">{{'Frontend'}}</a></li>
+                    <li><a routerLink="/backend" routerLinkActive="active-route">{{'Backend'}}</a></li>
+                    <li><a routerLink="/testing" routerLinkActive="active-route">{{'Testing'}}</a></li>
+                </ul>
+            </div>
+        </nav>
+        <hr>
+    </header>
+
+    <main class="container">
+
+        <div *ngIf="homePage">
+            <p class="home-context">
+                Glance of some of the modern Full Stack technologies which are in current trend.
+            </p>
+        </div>
+
+        <ng-container *ngIf="records">
+            <div *ngFor="let record of records " class="body-context">
+                <div *ngIf="!record.show">
+                    <div class="row">
+                        <div class="key">Name :</div>
+                        <div class="value">{{record.name}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="key">Category :</div>
+                        <div class="value">{{record.category}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="key">Last version :</div>
+                        <div class="value">{{record.latestVersion}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="key">Documentation :</div>
+                        <div class="value">{{record.documentation}}</div>
+                    </div>
+                </div>
+                <div *ngIf="record.show" class="row">
+                    <p class="description">{{record.description}}</p>
+                </div>
+                <button *ngIf="!record.show" type="button" (click)="toggle(record)">Description</button>
+                <button *ngIf="record.show" type="button" (click)="toggle(record)">Back</button>
+            </div>
+        </ng-container>
+    </main>
+</div>
